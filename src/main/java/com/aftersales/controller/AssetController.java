@@ -14,6 +14,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Base64;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -73,6 +74,13 @@ public class AssetController {
 	public AssetManagement getAsset(@RequestParam String id) throws JsonMappingException, JsonProcessingException {
 		AccessInterface accessInterface= new ObjectMapper().readValue(new String(Base64.getDecoder().decode(id)), AccessInterface.class);  
 		return this.assetrepo.findByAssetidAndCustomerid(accessInterface.getAssetid(), accessInterface.getCustomerid()).get();
+		
+	}
+	
+	@GetMapping
+	@RequestMapping("/list")
+	public List<AssetManagement> getList(@RequestParam String id) throws JsonMappingException, JsonProcessingException {
+		return this.assetrepo.findByCustomerid(id);
 		
 	}
 	
