@@ -32,7 +32,7 @@ import com.aftersales.domain.JwtUtils;
 import com.aftersales.domain.LoginRequest;
 import com.aftersales.domain.MessageResponse;
 
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping	("/api/auth")
 public class AuthController {
